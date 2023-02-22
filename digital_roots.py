@@ -6,7 +6,7 @@ Description: A python module that provides functions from calculating additive d
 
 if __name__ != "__main__":
 
-    def additive_digital_root(string):
+    def additive_digitalroot(string):
         if len(string) == 1:
             return string
         total = 0
@@ -14,7 +14,7 @@ if __name__ != "__main__":
             total += int(i)
         new_str = str(total)
         print(string + " (" + makeAdditionString(string) + ") -> " + new_str)
-        return additive_digital_root(new_str)
+        return additive_digitalroot(new_str)
 
     def makeAdditionString(string):
         equation = ""
@@ -38,3 +38,31 @@ if __name__ != "__main__":
         for i in string:
             equation += i + " * "
         return equation[0:len(equation)-3]
+    
+    def subtractive_digitalroot(string):
+        if len(string) == 1:
+            return string
+        total = 0
+        negative = False
+        for i in string:
+            if i == "-":
+                negative = True
+                continue
+            if negative:
+                total -= -int(i)
+                negative = False
+            else:
+                total -= int(i)
+        new_str = str(total)
+        print(string + " (" + makeSubtractString(string) + ") -> " + new_str)
+        return subtractive_digitalroot(new_str)
+    
+    def makeSubtractString(string):
+        equation = ""
+        for i in string:
+            if i != "-":
+                equation += i + " - "
+            else:
+                equation += i
+        return equation[0:len(equation)-3]
+
